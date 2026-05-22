@@ -5,6 +5,7 @@ enum TokenType {
     TYPE_STRING, 
     IF, 
     ELSE, 
+    WHILE,      
     IDENTIFIER, 
     NUMBER, 
     STRING_LIT, 
@@ -31,6 +32,7 @@ public class Lexer {
         keywords.put("বাক্য", TokenType.TYPE_STRING);
         keywords.put("যদি", TokenType.IF);
         keywords.put("নাহলে", TokenType.ELSE);
+        keywords.put("যখন", TokenType.WHILE);
     }
 
     public Token nextToken() {
@@ -89,19 +91,6 @@ public class Lexer {
         return c >= '\u0980' && c <= '\u09FF';
     }
 
-    // --- TEST MAIN METHOD ---
-    public static void main(String[] args) {
-        // A sample program in your new language
-        String code = "সংখ্যা ক = ১০; যদি (ক) { সংখ্যা খ = ২০; }"; 
-        
-        Lexer lexer = new Lexer(code);
-        Token token;
-        System.out.println("Tokenizing Bangla Source Code...");
-        do {
-            token = lexer.nextToken();
-            System.out.println(token);
-        } while (token.type != TokenType.EOF);
-    }
 }
 
 
